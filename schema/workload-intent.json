@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WorkloadIntent",
+  "description": "ARP Commit phase input — agent declares what it intends to do before doing it.",
+  "type": "object",
+  "required": ["agent_id", "node_id", "duration_estimate_s", "credits_committed"],
+  "properties": {
+    "agent_id":             { "type": "string", "description": "Unique identifier for the agent making the commitment." },
+    "node_id":              { "type": "string", "description": "Target node for the workload." },
+    "model_family":         { "type": "string", "description": "Model family (e.g. llama, mistral, phi)." },
+    "parameter_count_b":    { "type": "number", "description": "Model parameter count in billions." },
+    "quantization":         { "type": "string", "description": "Quantization level (e.g. Q4_K_M, Q8_0, FP16)." },
+    "context_length":       { "type": "integer", "description": "Expected context window size in tokens." },
+    "batch_size":           { "type": "integer", "description": "Expected concurrent request batch size." },
+    "duration_estimate_s":  { "type": "integer", "description": "Estimated duration of the workload in seconds." },
+    "credits_committed":    { "type": "number", "description": "Credits staked on this commitment. Held in escrow until Reconcile." },
+    "vram_estimate_gb":     { "type": "number", "description": "Expected VRAM usage in gigabytes." },
+    "priority":             { "type": "string", "enum": ["low", "normal", "high"], "description": "Workload priority for scheduling." }
+  }
+}

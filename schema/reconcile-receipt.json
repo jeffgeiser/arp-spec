@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReconcileReceipt",
+  "description": "ARP Reconcile phase output — settlement + learning artifacts from a completed workload.",
+  "type": "object",
+  "required": ["reservation_id", "settlement", "deltas"],
+  "properties": {
+    "reservation_id": { "type": "string", "description": "The original Commit reservation ID." },
+    "settlement": {
+      "type": "object",
+      "required": ["credits_committed", "credits_settled"],
+      "properties": {
+        "credits_committed":  { "type": "number", "description": "Credits originally escrowed." },
+        "credits_settled":    { "type": "number", "description": "Credits after adjustment." },
+        "adjustment":         { "type": "number", "description": "Positive = agent charged more, negative = refund." },
+        "adjustment_reason":  { "type": "string", "description": "Human-readable explanation of the adjustment." }
+      }
+    },
+    "deltas": {
+      "type": "object",
+      "properties": {
+        "agent_accuracy": {
+          "type": "object",
+          "description": "How accurately the agent predicted its own resource consumption.",
+          "properties": {
+            "duration_predicted_s": { "type": ["number", "null"] },
+            "duration_actual_s":    { "type": "number" },
+            "vram_predicted_gb":    { "type": ["number", "null"] },
+            "vram_actual_gb":       { "type": ["number", "null"] },
+            "accuracy_score":       { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "0.0 = wildly inaccurate, 1.0 = perfect prediction." }
+          }
+        },
+        "node_reliability": {
+          "type": "object",
+          "description": "Whether the node honored its commitment.",
+          "properties": {
+            "wes_predicted":      { "type": ["number", "null"] },
+            "wes_actual":         { "type": ["number", "null"] },
+            "thermal_stable":     { "type": "boolean", "description": "True if thermal state remained Normal throughout." },
+            "reliability_score":  { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "0.0 = failed to deliver, 1.0 = exceeded commitment." },
+            "note":               { "type": "string", "description": "Human-readable summary of any reliability issues." }
+          }
+        }
+      }
+    },
+    "completed_at_ms": { "type": "integer", "description": "Unix milliseconds when settlement completed." }
+  }
+}

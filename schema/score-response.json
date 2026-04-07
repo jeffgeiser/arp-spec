@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScoreResponse",
+  "description": "ARP Score phase response — workload fit prediction with explanation.",
+  "type": "object",
+  "required": ["node_id", "score", "confidence", "explanation"],
+  "properties": {
+    "node_id":      { "type": "string", "description": "Node being scored." },
+    "score":        { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Fit score — 0.0 (will fail) to 1.0 (perfect fit)." },
+    "confidence":   { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "Confidence in the score prediction. Lower when historical data is sparse." },
+    "explanation":  { "type": "string", "description": "Human-readable explanation of the score. Names the primary constraint." },
+    "constraints": {
+      "type": "array",
+      "description": "Individual factors that contributed to the score, ordered by weight.",
+      "items": {
+        "type": "object",
+        "required": ["factor", "weight", "value"],
+        "properties": {
+          "factor": { "type": "string", "description": "Factor name (e.g. thermal_headroom, vram_fit, wes_history, reliability)." },
+          "weight": { "type": "number", "description": "Weight of this factor in the overall score (0.0–1.0)." },
+          "value":  { "type": "number", "description": "Factor value (0.0–1.0, higher is better)." },
+          "detail": { "type": "string", "description": "Human-readable explanation of this factor's assessment." }
+        }
+      }
+    },
+    "recommended": { "type": "boolean", "description": "True if this node is the top-ranked recommendation for the workload." }
+  }
+}

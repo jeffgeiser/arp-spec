@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FleetContext",
+  "description": "ARP Sense phase response — structured fleet state for agent consumption.",
+  "type": "object",
+  "required": ["nodes", "generated_at_ms"],
+  "properties": {
+    "generated_at_ms": {
+      "type": "integer",
+      "description": "Unix milliseconds when this context was generated."
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "online"],
+        "properties": {
+          "node_id":          { "type": "string", "description": "Unique node identifier." },
+          "hostname":         { "type": ["string", "null"], "description": "Human-readable hostname." },
+          "online":           { "type": "boolean", "description": "True if telemetry received within the last 30 seconds." },
+          "inference_state":  { "type": ["string", "null"], "enum": ["live", "idle-spd", "busy", "idle", null], "description": "Current inference state classification." },
+          "wes":              { "type": ["number", "null"], "description": "Wicklee Efficiency Score — tok/s per watt, thermally penalized." },
+          "wes_status":       { "type": ["string", "null"], "enum": ["excellent", "good", "acceptable", "low", null], "description": "Machine-readable WES assessment." },
+          "tok_s":            { "type": ["number", "null"], "description": "Current tokens per second." },
+          "power_w":          { "type": ["number", "null"], "description": "Current power draw in watts." },
+          "thermal_state":    { "type": ["string", "null"], "enum": ["Normal", "Fair", "Serious", "Critical", null], "description": "OS thermal condition." },
+          "thermal_penalty":  { "type": ["number", "null"], "description": "WES thermal penalty multiplier (1.0 = no penalty)." },
+          "gpu_utilization":  { "type": ["number", "null"], "description": "GPU compute utilization percentage." },
+          "vram_used_mb":     { "type": ["integer", "null"], "description": "VRAM currently in use." },
+          "vram_total_mb":    { "type": ["integer", "null"], "description": "Total VRAM capacity." },
+          "active_model":     { "type": ["string", "null"], "description": "Currently loaded model name." },
+          "suggested_action": { "type": ["string", "null"], "description": "Recommended action when node is degraded." }
+        }
+      }
+    },
+    "fleet_summary": {
+      "type": "object",
+      "properties": {
+        "online_count":   { "type": "integer" },
+        "total_count":    { "type": "integer" },
+        "avg_wes":        { "type": ["number", "null"] },
+        "fleet_tok_s":    { "type": ["number", "null"] }
+      }
+    }
+  }
+}

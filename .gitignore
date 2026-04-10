@@ -1,0 +1,21 @@
+# Claude Code / AI assistant artifacts
+.claude/
+CLAUDE.md
+claude.md
+.claude-*
+*.claude.md
+
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node / JS (for future tooling)
+node_modules/
+dist/
+*.log

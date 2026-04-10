@@ -1,13 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/jeffgeiser/arp-spec/blob/main/schema/reconcile-receipt.json",
   "title": "ReconcileReceipt",
-  "description": "ARP Reconcile phase output — settlement + learning artifacts from a completed workload.",
+  "description": "ARP Reconcile phase output — settlement + learning artifacts from a completed workload. See examples/04-reconcile-receipt.json for a worked example.",
   "type": "object",
+  "additionalProperties": false,
   "required": ["reservation_id", "settlement", "deltas"],
   "properties": {
     "reservation_id": { "type": "string", "description": "The original Commit reservation ID." },
     "settlement": {
       "type": "object",
+      "additionalProperties": false,
       "required": ["credits_committed", "credits_settled"],
       "properties": {
         "credits_committed":  { "type": "number", "description": "Credits originally escrowed." },
@@ -18,9 +21,11 @@
     },
     "deltas": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "agent_accuracy": {
           "type": "object",
+          "additionalProperties": false,
           "description": "How accurately the agent predicted its own resource consumption.",
           "properties": {
             "duration_predicted_s": { "type": ["number", "null"] },
@@ -32,6 +37,7 @@
         },
         "node_reliability": {
           "type": "object",
+          "additionalProperties": false,
           "description": "Whether the node honored its commitment.",
           "properties": {
             "wes_predicted":      { "type": ["number", "null"] },

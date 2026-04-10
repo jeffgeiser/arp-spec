@@ -1,8 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/jeffgeiser/arp-spec/blob/main/schema/workload-intent.json",
   "title": "WorkloadIntent",
-  "description": "ARP Commit phase input — agent declares what it intends to do before doing it.",
+  "description": "ARP Commit phase input — agent declares what it intends to do before doing it. See examples/03-commit-intent.json for a worked example.",
   "type": "object",
+  "additionalProperties": false,
   "required": ["agent_id", "node_id", "duration_estimate_s", "credits_committed"],
   "properties": {
     "agent_id":             { "type": "string", "description": "Unique identifier for the agent making the commitment." },
@@ -12,8 +14,8 @@
     "quantization":         { "type": "string", "description": "Quantization level (e.g. Q4_K_M, Q8_0, FP16)." },
     "context_length":       { "type": "integer", "description": "Expected context window size in tokens." },
     "batch_size":           { "type": "integer", "description": "Expected concurrent request batch size." },
-    "duration_estimate_s":  { "type": "integer", "description": "Estimated duration of the workload in seconds." },
-    "credits_committed":    { "type": "number", "description": "Credits staked on this commitment. Held in escrow until Reconcile." },
+    "duration_estimate_s":  { "type": "integer", "minimum": 1, "description": "Estimated duration of the workload in seconds." },
+    "credits_committed":    { "type": "number", "minimum": 0, "description": "Credits staked on this commitment. Held in escrow until Reconcile." },
     "vram_estimate_gb":     { "type": "number", "description": "Expected VRAM usage in gigabytes." },
     "priority":             { "type": "string", "enum": ["low", "normal", "high"], "description": "Workload priority for scheduling." }
   }

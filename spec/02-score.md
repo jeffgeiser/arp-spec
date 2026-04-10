@@ -154,7 +154,7 @@ confidence = 0.95
            - 0.10 * (1 if any required workload field missing else 0)
 ```
 
-Floor at `0.30`. A score with `confidence < 0.50` SHOULD be flagged in `explanation` so the agent can decide whether to escalate or fall back.
+Floor at `0.30`. A score with `confidence < 0.50` MUST be flagged in `explanation` (e.g. prefixed with `LOW CONFIDENCE:` or equivalent unambiguous marker) so the agent can decide whether to escalate or fall back. Score-conformant implementations that omit this flag are non-conformant.
 
 ## Design Decision: Score Must Be Explainable
 

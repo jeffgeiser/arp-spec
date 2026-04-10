@@ -1,8 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/jeffgeiser/arp-spec/blob/main/schema/fleet-context.json",
   "title": "FleetContext",
-  "description": "ARP Sense phase response — structured fleet state for agent consumption.",
+  "description": "ARP Sense phase response — structured fleet state for agent consumption. See examples/01-sense-fleet-context.json for a worked example.",
   "type": "object",
+  "additionalProperties": false,
   "required": ["nodes", "generated_at_ms"],
   "properties": {
     "generated_at_ms": {
@@ -13,6 +15,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": ["node_id", "online"],
         "properties": {
           "node_id":          { "type": "string", "description": "Unique node identifier." },
@@ -35,6 +38,7 @@
     },
     "fleet_summary": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "online_count":   { "type": "integer" },
         "total_count":    { "type": "integer" },

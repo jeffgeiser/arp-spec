@@ -1,0 +1,33 @@
+{
+  "node_id": "WK-A1B2",
+  "score": 0.84,
+  "confidence": 0.88,
+  "explanation": "Primary constraint: VRAM fit (28.5GB required for 70B Q4_K_M + 8K context KV cache, 32GB available — 89% fill). Thermals and reliability are excellent. Recommended for this workload.",
+  "constraints": [
+    {
+      "factor": "thermal_headroom",
+      "weight": 0.30,
+      "value": 0.94,
+      "detail": "Current 41C, throttle threshold 90C — 49C margin. Trend: stable over last 10 minutes."
+    },
+    {
+      "factor": "vram_fit",
+      "weight": 0.30,
+      "value": 0.71,
+      "detail": "28.5GB required (model 25.1GB + KV cache 3.4GB at 8K context), 32.0GB total, 28.0GB available after baseline overhead. 89% fill leaves narrow margin for context growth."
+    },
+    {
+      "factor": "wes_history",
+      "weight": 0.25,
+      "value": 0.92,
+      "detail": "Historical baseline for llama 70B Q4_K_M on this node: 8.6 WES (n=14 prior runs). Current node WES: 9.1. Trending favorably."
+    },
+    {
+      "factor": "reliability",
+      "weight": 0.15,
+      "value": 0.94,
+      "detail": "Node completed 47/50 recent Commits successfully (94%). Last 10 jobs: 10/10."
+    }
+  ],
+  "recommended": true
+}

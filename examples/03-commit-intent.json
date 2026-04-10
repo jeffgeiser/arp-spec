@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent-claude-desktop-01",
+  "node_id": "WK-A1B2",
+  "model_family": "llama",
+  "parameter_count_b": 70,
+  "quantization": "Q4_K_M",
+  "context_length": 8192,
+  "batch_size": 1,
+  "duration_estimate_s": 60,
+  "credits_committed": 12,
+  "vram_estimate_gb": 28.5,
+  "priority": "normal"
+}

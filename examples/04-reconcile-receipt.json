@@ -1,0 +1,26 @@
+{
+  "reservation_id": "res-7f3a9c1e-2b4d-4e8a-9c1f-8e2b4d6a1c3e",
+  "settlement": {
+    "credits_committed": 12.0,
+    "credits_settled": 11.2,
+    "adjustment": -0.8,
+    "adjustment_reason": "Node delivered 8.4 average WES vs 9.1 predicted at Commit. Pro-rated refund for 7.7% performance shortfall."
+  },
+  "deltas": {
+    "agent_accuracy": {
+      "duration_predicted_s": 60,
+      "duration_actual_s": 52,
+      "vram_predicted_gb": 28.5,
+      "vram_actual_gb": 27.8,
+      "accuracy_score": 0.91
+    },
+    "node_reliability": {
+      "wes_predicted": 9.1,
+      "wes_actual": 8.4,
+      "thermal_stable": false,
+      "reliability_score": 0.82,
+      "note": "Thermal state degraded from Normal to Fair at T+34s. Recovery to Normal at T+49s. Penalty applied to WES for the 15-second window."
+    }
+  },
+  "completed_at_ms": 1775923252000
+}

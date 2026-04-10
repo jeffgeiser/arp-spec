@@ -38,7 +38,14 @@ Score transforms Sense data into a workload-specific prediction. Given a node an
 
 ### Formula (v1)
 
-Thermal headroom (30%) + VRAM fit (30%) + WES history (25%) + Node reliability (15%). Weights adjust based on Reconcile data.
+```
+score = 0.30 * thermal_headroom
+      + 0.30 * vram_fit
+      + 0.25 * wes_history
+      + 0.15 * reliability
+```
+
+Each per-factor value is in `[0.0, 1.0]`. Per-factor computation is defined in `spec/02-score.md` ("Per-Factor Computation"). Implementations conforming at the Score level MUST follow those definitions in v0.1 so that two independent scorers produce comparable values; weights and per-factor formulas will adjust as Reconcile data accumulates.
 
 ### Requirement: Explainability
 

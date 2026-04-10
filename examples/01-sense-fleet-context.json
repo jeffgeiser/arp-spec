@@ -1,0 +1,62 @@
+{
+  "generated_at_ms": 1775923200000,
+  "nodes": [
+    {
+      "node_id": "WK-A1B2",
+      "hostname": "wicklee-mac-studio-01.local",
+      "online": true,
+      "inference_state": "idle-spd",
+      "wes": 9.1,
+      "wes_status": "good",
+      "tok_s": 0.0,
+      "power_w": 18.4,
+      "thermal_state": "Normal",
+      "thermal_penalty": 1.0,
+      "gpu_utilization": 2,
+      "vram_used_mb": 4096,
+      "vram_total_mb": 32768,
+      "active_model": null,
+      "suggested_action": null
+    },
+    {
+      "node_id": "WK-C133",
+      "hostname": "wicklee-mac-studio-02.local",
+      "online": true,
+      "inference_state": "busy",
+      "wes": 7.2,
+      "wes_status": "acceptable",
+      "tok_s": 38.1,
+      "power_w": 142.7,
+      "thermal_state": "Fair",
+      "thermal_penalty": 1.18,
+      "gpu_utilization": 87,
+      "vram_used_mb": 18432,
+      "vram_total_mb": 24576,
+      "active_model": "mistral-7b-instruct-q5_k_m",
+      "suggested_action": "reduce_batch_size"
+    },
+    {
+      "node_id": "WK-D204",
+      "hostname": "wicklee-mac-mini-03.local",
+      "online": false,
+      "inference_state": null,
+      "wes": null,
+      "wes_status": null,
+      "tok_s": null,
+      "power_w": null,
+      "thermal_state": null,
+      "thermal_penalty": null,
+      "gpu_utilization": null,
+      "vram_used_mb": null,
+      "vram_total_mb": null,
+      "active_model": null,
+      "suggested_action": "investigate_offline"
+    }
+  ],
+  "fleet_summary": {
+    "online_count": 2,
+    "total_count": 3,
+    "avg_wes": 8.15,
+    "fleet_tok_s": 38.1
+  }
+}

@@ -84,4 +84,4 @@ MIT — see [LICENSE](LICENSE).
 
 ## Contributing
 
-ARP is developed in the open. Issues, RFCs, and PRs welcome. The protocol is more valuable than any single implementation.
+ARP is developed in the open. Issues, RFCs, and PRs welcome. The protocol is more valuable than any single implementation. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to file issues, submit RFCs, and list implementations.

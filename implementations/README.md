@@ -22,6 +22,16 @@ Wicklee's Sense implementation includes:
 - `get_inference_profile` — correlated timeline (TTFT, KV cache, thermal, power)
 - `explain_slowdown` — multi-factor root cause analysis
 
+## Other Implementations
+
+### [arp-agent](https://github.com/jeffgeiser/arp-agent)
+
+- **Phases implemented:** Score (routing). Consumes Wicklee Sense data and writes a decision log intended to feed Reconcile (v0.2).
+- **Platform:** Python (FastAPI + httpx) OpenAI-compatible routing proxy
+- **What it does:** polls each node's Wicklee `/health`, scores nodes with the v0.1 Score formula (`spec/02-score.md`), routes each request to the highest-scoring eligible node, and logs every routing decision as JSONL
+- **Status:** v0.1, early reference implementation
+- **License:** MIT
+
 ---
 
 ## Adding Your Implementation

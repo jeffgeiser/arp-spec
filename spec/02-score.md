@@ -36,7 +36,7 @@ All workload fields except `model_family` are optional. Score degrades gracefull
   "constraints": [
     { "factor": "thermal_headroom", "weight": 0.30, "value": 0.58, "detail": "78C / 90C threshold, 12C margin" },
     { "factor": "vram_fit", "weight": 0.30, "value": 0.72, "detail": "28.5GB required, 32GB available (89% fill)" },
-    { "factor": "wes_history", "weight": 0.25, "value": 0.85, "detail": "Similar workload baseline: 8.2 WES, current: 7.8 WES" },
+    { "factor": "wes_history", "weight": 0.25, "value": 0.85, "detail": "Similar workload baseline: 8.2 WES, current: 7.4 WES" },
     { "factor": "reliability", "weight": 0.15, "value": 0.92, "detail": "Node completed 47/50 recent jobs successfully" }
   ]
 }
@@ -117,11 +117,13 @@ current  = current_WES
 ratio    = current / baseline
 
 wes_history =
-    1.00 if ratio >= 1.05
-    ratio - 0.05 if 0.80 <= ratio < 1.05
-    0.50 * ratio if 0.50 <= ratio < 0.80
-    0.0  if ratio < 0.50
+    1.00                     if ratio >= 1.05
+    ratio - 0.05             if 0.80 <= ratio < 1.05
+    2.5 * (ratio - 0.50)     if 0.50 <= ratio < 0.80
+    0.0                      if ratio < 0.50
 ```
+
+- The curve is continuous: `0.0` at `ratio = 0.50`, `0.75` at `0.80`, `1.00` at `1.05`. Between `0.50` and `0.80` it falls linearly and steeper than above `0.80`, so a node running well under its baseline loses credit quickly without a cliff at the boundary.
 
 - `N = 14` for v0.1 (roughly two weeks of one job/day per model). Implementations MAY use a different window but MUST document it.
 - "Same model" matches on `(model_family, parameter_count_b, quantization)`. Different context lengths share a baseline; future versions may stratify.

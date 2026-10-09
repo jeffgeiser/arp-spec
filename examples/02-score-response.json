@@ -20,7 +20,7 @@
       "factor": "wes_history",
       "weight": 0.25,
       "value": 0.92,
-      "detail": "Historical baseline for llama 70B Q4_K_M on this node: 8.6 WES (n=14 prior runs). Current node WES: 9.1. Trending favorably."
+      "detail": "Historical baseline for llama 70B Q4_K_M on this node: 9.4 WES (n=14 prior runs). Current node WES: 9.1 (ratio 0.97), slightly below baseline."
     },
     {
       "factor": "reliability",

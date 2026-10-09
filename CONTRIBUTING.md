@@ -73,3 +73,14 @@ Be direct, be specific, be kind. Assume contributors are working in good faith w
 ## License
 
 By contributing, you agree your contribution is licensed under the [MIT License](LICENSE) of this repository.
+
+## Validating schemas and examples
+
+Before opening a PR that touches `schema/` or `examples/`, run:
+
+```bash
+pip install -r requirements-dev.txt
+python scripts/validate.py
+```
+
+It checks that every schema is a valid JSON Schema, that every example validates against its schema, and that every schema and example is covered.

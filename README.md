@@ -69,6 +69,7 @@ Three artifacts: `ActualResourceReceipt`, `AgentAccuracyDelta`, `NodeReliability
 | Implementation | Phases | Status |
 |---------------|--------|--------|
 | [Wicklee](https://wicklee.dev) | Sense (complete), Score (in progress) | Reference implementation |
+| [arp-agent](https://github.com/jeffgeiser/arp-agent) | Score (routing proxy) | v0.1, early |
 
 See [implementations/](implementations/) for details.
 
